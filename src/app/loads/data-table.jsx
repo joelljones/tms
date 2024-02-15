@@ -17,6 +17,8 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
+import { Badge } from '@/components/ui/badge';
+
 // interface DataTableProps<TData, TValue> {
 //   columns: ColumnDef<TData, TValue>[]
 //   data: TData[]
@@ -46,7 +48,7 @@ function DataTable({ columns, data }) {
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="text-center">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -67,8 +69,15 @@ function DataTable({ columns, data }) {
                 data-state={row.getIsSelected() && 'selected'}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  // <TableCell key={cell.id} className="text-center">
+                  //   {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  // </TableCell>
+                  <TableCell key={cell.id} className="text-center">
+                    {cell.getValue() === 'Booked' ? (
+                      <Badge className="dark:bg-cyan-500">Booked</Badge>
+                    ) : (
+                      flexRender(cell.column.columnDef.cell, cell.getContext())
+                    )}
                   </TableCell>
                 ))}
               </TableRow>

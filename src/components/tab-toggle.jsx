@@ -3,7 +3,7 @@ import DemoPage from '../app/loads/page';
 
 export default function TabsDemo() {
   return (
-    <div className="container mx-auto py-10">
+    <div className="py-10 min-w-[1558px]">
       <Tabs defaultValue="loads">
         <TabsList className="dark:bg-card dark:text-muted-foreground">
           <TabsTrigger
