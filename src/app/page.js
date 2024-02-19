@@ -1,5 +1,5 @@
-import TabsDemo from '@/components/tab-toggle';
 // import ModeToggle from '@/components/theme-toggle';
+import TabsDemo from '@/components/tab-toggle';
 
 export default function Home() {
   return (
@@ -41,7 +41,9 @@ export default function Home() {
       </div> */}
 
       {/* <ModeToggle /> */}
-      <TabsDemo />
+      <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-6 min-w-[1669px]">
+        <TabsDemo />
+      </div>
 
       {/* <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
         <a
