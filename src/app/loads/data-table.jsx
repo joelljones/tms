@@ -5,6 +5,7 @@ import {
   // ColumnDef,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   // SortingState,
   getSortedRowModel,
   useReactTable,
@@ -19,6 +20,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+
+import { Input } from '@/components/ui/input';
 
 import { Badge } from '@/components/ui/badge';
 
@@ -39,6 +42,7 @@ import { Badge } from '@/components/ui/badge';
 export default function DataTable({ columns, data }) {
   const [sorting, setSorting] = React.useState([]);
   const [rowSelection, setRowSelection] = React.useState({});
+  const [columnFilters, setColumnFilters] = React.useState([]);
 
   const table = useReactTable({
     data,
@@ -47,14 +51,28 @@ export default function DataTable({ columns, data }) {
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     onRowSelectionChange: setRowSelection,
+    onColumnFiltersChange: setColumnFilters,
+    getFilteredRowModel: getFilteredRowModel(),
     state: {
       sorting,
       rowSelection,
+      columnFilters,
     },
   });
 
   return (
     <>
+      <div className="flex items-center py-4">
+        <Input
+          placeholder="Filter load status..."
+          value={table.getColumn('loadStatus')?.getFilterValue() ?? ''}
+          onChange={(event) =>
+            table.getColumn('loadStatus')?.setFilterValue(event.target.value)
+          }
+          className=" dark:border-background dark:ring-offset-background dark:placeholder:text-muted-foreground dark:focus-visible:ring-ring max-w-sm dark:bg-background dark:text-muted-foreground dark:data-[state=active]:bg-background"
+        />
+      </div>
+
       <div className="rounded-md border dark:bg-card">
         <Table>
           <TableHeader>
