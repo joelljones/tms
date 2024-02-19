@@ -5,8 +5,11 @@ import {
   // ColumnDef,
   flexRender,
   getCoreRowModel,
+  // SortingState,
+  getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import * as React from 'react';
 
 import {
   Table,
@@ -33,11 +36,18 @@ import { Badge } from '@/components/ui/badge';
 //     columns,
 //     getCoreRowModel: getCoreRowModel(),
 //   })
-function DataTable({ columns, data }) {
+export default function DataTable({ columns, data }) {
+  const [sorting, setSorting] = React.useState([]);
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
+    state: {
+      sorting,
+    },
   });
 
   return (
@@ -94,5 +104,3 @@ function DataTable({ columns, data }) {
     </div>
   );
 }
-
-export default DataTable;

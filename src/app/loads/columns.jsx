@@ -3,7 +3,7 @@
 
 // import { ColumnDef } from "@tanstack/react-table"
 import { Button } from '@/components/ui/button';
-import { Trash2 } from 'lucide-react';
+import { ArrowUpDown, Trash2 } from 'lucide-react';
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -30,11 +30,33 @@ import { Trash2 } from 'lucide-react';
 export const columns = [
   {
     accessorKey: 'dateBooked',
-    header: 'Date Booked',
+    // header: 'Date Booked',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Date Booked
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: 'deliveryDate',
-    header: 'Delivery Date',
+    // header: 'Delivery Date',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Delivery Date
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: 'driver',
