@@ -3,6 +3,7 @@
 
 // import { ColumnDef } from "@tanstack/react-table"
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import { ArrowUpDown, Trash2 } from 'lucide-react';
 
 // This type is used to define the shape of our data.
@@ -28,6 +29,28 @@ import { ArrowUpDown, Trash2 } from 'lucide-react';
 
 // export const columns: ColumnDef<Payment>[] = [
 export const columns = [
+  {
+    id: 'select',
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && 'indeterminate')
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+    // enableSorting: false,
+    // enableHiding: false,
+  },
   {
     accessorKey: 'dateBooked',
     // header: 'Date Booked',
