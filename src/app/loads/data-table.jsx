@@ -1,16 +1,18 @@
 // (client component) will contain our <DataTable /> component
 'use client';
 
+import * as React from 'react';
+
 import {
   // ColumnDef,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   // SortingState,
+  // VisibilityState,
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import * as React from 'react';
 
 import {
   Table,
@@ -22,6 +24,15 @@ import {
 } from '@/components/ui/table';
 
 import { Input } from '@/components/ui/input';
+
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+
+import { Button } from '@/components/ui/button';
 
 import { Badge } from '@/components/ui/badge';
 
@@ -43,6 +54,7 @@ export default function DataTable({ columns, data }) {
   const [sorting, setSorting] = React.useState([]);
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnFilters, setColumnFilters] = React.useState([]);
+  const [columnVisibility, setColumnVisibility] = React.useState({});
 
   const table = useReactTable({
     data,
@@ -53,10 +65,12 @@ export default function DataTable({ columns, data }) {
     onRowSelectionChange: setRowSelection,
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
+    onColumnVisibilityChange: setColumnVisibility,
     state: {
       sorting,
       rowSelection,
       columnFilters,
+      columnVisibility,
     },
   });
 
@@ -69,8 +83,37 @@ export default function DataTable({ columns, data }) {
           onChange={(event) =>
             table.getColumn('loadStatus')?.setFilterValue(event.target.value)
           }
-          className=" dark:border-background dark:ring-offset-background dark:placeholder:text-muted-foreground dark:focus-visible:ring-ring max-w-sm dark:bg-background dark:text-muted-foreground dark:data-[state=active]:bg-background"
+          className="dark:border-background dark:ring-offset-background dark:placeholder:text-muted-foreground dark:focus-visible:ring-ring max-w-sm dark:bg-background dark:text-muted-foreground dark:data-[state=active]:bg-background"
         />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="outline"
+              className="ml-auto focus-visible:ring-0 focus-visible:ring-offset-0"
+            >
+              Columns
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            {table
+              .getAllColumns()
+              .filter((column) => column.getCanHide())
+              .map((column) => {
+                return (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    className="capitalize"
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value) =>
+                      column.toggleVisibility(!!value)
+                    }
+                  >
+                    {column.id}
+                  </DropdownMenuCheckboxItem>
+                );
+              })}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
 
       <div className="rounded-md border dark:bg-card">
