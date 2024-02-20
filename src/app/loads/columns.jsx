@@ -4,7 +4,14 @@
 // import { ColumnDef } from "@tanstack/react-table"
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { ArrowUpDown, Trash2 } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -14,6 +21,32 @@ import { ArrowUpDown, Trash2 } from 'lucide-react';
 //   status: "pending" | "processing" | "success" | "failed"
 //   email: string
 // }
+
+// HANDLE EDIT
+// const handleEditSubmit = async (e) => {
+//   e.preventDefault();
+
+//   const updatedText = text;
+
+//   const res = await fetch(process.env.DB_URL + load._id, {
+//     method: 'PATCH',
+//     body: JSON.stringify({ text: updatedText }),
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   });
+//   const json = await res.json();
+
+//   if (!res.ok) {
+//     setError(json.error);
+//   }
+//   if (res.ok) {
+//     setText('');
+//     setError(null);
+//     console.log('Comment edited:', json);
+//     closeModal(); // close modal here to prevent close on submit when error is present
+//   }
+// };
 
 // HANDLE DELETE
 // const handleDeleteClick = async () => {
@@ -149,13 +182,30 @@ export const columns = [
       const load = row.original;
 
       return (
-        <Button
-          variant="ghost"
-          className="h-8 w-8 p-0"
-          // onClick={handleDeleteClick}
-        >
-          <Trash2 className="h-4 w-4" />
-        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="ghost"
+              className="h-8 w-8 p-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+            >
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem
+            // onClick={openModal}
+            >
+              Edit load
+            </DropdownMenuItem>
+            <DropdownMenuItem
+            // onClick={handleDeleteClick}
+            >
+              Delete load
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       );
     },
   },
