@@ -77,6 +77,7 @@ export default function DataTable({ columns, data }) {
   return (
     <>
       <div className="flex items-center py-4">
+        {/* FILTER */}
         <Input
           placeholder="Filter load status..."
           value={table.getColumn('loadStatus')?.getFilterValue() ?? ''}
@@ -85,6 +86,8 @@ export default function DataTable({ columns, data }) {
           }
           className="dark:border-background dark:ring-offset-background dark:placeholder:text-muted-foreground dark:focus-visible:ring-ring max-w-sm dark:bg-background dark:text-muted-foreground dark:data-[state=active]:bg-background"
         />
+
+        {/* COLUMN VISIBILITY TOGGLE */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -116,6 +119,7 @@ export default function DataTable({ columns, data }) {
         </DropdownMenu>
       </div>
 
+      {/* TABLE */}
       <div className="rounded-md border dark:bg-card">
         <Table>
           <TableHeader>

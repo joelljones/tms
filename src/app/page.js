@@ -41,7 +41,7 @@ export default function Home() {
       </div> */}
 
       {/* <ModeToggle /> */}
-      <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-6 min-w-[1669px]">
+      <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-6 min-w-[1751px]">
         <TabsDemo />
       </div>
 

@@ -146,7 +146,17 @@ export const columns = [
   },
   {
     accessorKey: 'loadRate',
-    header: 'Load Rate',
+    // header: 'Load Rate',
+    header: () => <div>Load Rate</div>,
+    cell: ({ row }) => {
+      const loadRate = parseFloat(row.getValue('loadRate'));
+      const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(loadRate);
+
+      return <div className="font-medium">{formatted}</div>;
+    },
   },
   {
     accessorKey: 'addtlComp',
@@ -154,7 +164,17 @@ export const columns = [
   },
   {
     accessorKey: 'totalDue',
-    header: 'Total Due',
+    // header: 'Total Due',
+    header: () => <div>Total Due</div>,
+    cell: ({ row }) => {
+      const totalDue = parseFloat(row.getValue('totalDue'));
+      const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(totalDue);
+
+      return <div className="font-medium">{formatted}</div>;
+    },
   },
   {
     accessorKey: 'dhMi',
@@ -170,11 +190,31 @@ export const columns = [
   },
   {
     accessorKey: 'rpmNoDh',
-    header: 'RPM no DH',
+    // header: 'RPM no DH',
+    header: () => <div>RPM no DH</div>,
+    cell: ({ row }) => {
+      const rpmNoDh = parseFloat(row.getValue('rpmNoDh'));
+      const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(rpmNoDh);
+
+      return <div className="font-medium">{formatted}</div>;
+    },
   },
   {
     accessorKey: 'totalRpm',
-    header: 'Total RPM',
+    // header: 'Total RPM',
+    header: () => <div>Total RPM</div>,
+    cell: ({ row }) => {
+      const totalRpm = parseFloat(row.getValue('totalRpm'));
+      const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(totalRpm);
+
+      return <div className="font-medium">{formatted}</div>;
+    },
   },
   {
     id: 'actions',
@@ -194,11 +234,14 @@ export const columns = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            {/* EDIT ROW */}
             <DropdownMenuItem
             // onClick={openModal}
             >
               Edit load
             </DropdownMenuItem>
+
+            {/* DELETE ROW */}
             <DropdownMenuItem
             // onClick={handleDeleteClick}
             >
