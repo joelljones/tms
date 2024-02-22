@@ -36,6 +36,8 @@ import { Button } from '@/components/ui/button';
 
 import { Badge } from '@/components/ui/badge';
 
+import { PlusSquare } from 'lucide-react';
+
 // interface DataTableProps<TData, TValue> {
 //   columns: ColumnDef<TData, TValue>[]
 //   data: TData[]
@@ -87,36 +89,46 @@ export default function DataTable({ columns, data }) {
           className="dark:border-background dark:ring-offset-background dark:placeholder:text-muted-foreground dark:focus-visible:ring-ring max-w-sm dark:bg-background dark:text-muted-foreground dark:data-[state=active]:bg-background"
         />
 
-        {/* COLUMN VISIBILITY TOGGLE */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="outline"
-              className="ml-auto focus-visible:ring-0 focus-visible:ring-offset-0"
-            >
-              Columns
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="ml-auto flex">
+          {/* ADD ROW BTN */}
+          <Button
+            variant="ghost"
+            className="focus-visible:ring-0 focus-visible:ring-offset-0 p-2 mr-1"
+          >
+            <PlusSquare className="size-8 text-muted-foreground hover:text-foreground" />
+          </Button>
+
+          {/* COLUMN VISIBILITY TOGGLE */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                className="focus-visible:ring-0 focus-visible:ring-offset-0"
+              >
+                Columns
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {table
+                .getAllColumns()
+                .filter((column) => column.getCanHide())
+                .map((column) => {
+                  return (
+                    <DropdownMenuCheckboxItem
+                      key={column.id}
+                      className="capitalize"
+                      checked={column.getIsVisible()}
+                      onCheckedChange={(value) =>
+                        column.toggleVisibility(!!value)
+                      }
+                    >
+                      {column.id}
+                    </DropdownMenuCheckboxItem>
+                  );
+                })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
 
       {/* TABLE */}
