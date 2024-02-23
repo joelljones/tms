@@ -56,7 +56,9 @@ export default function DataTable({ columns, data }) {
   const [sorting, setSorting] = React.useState([]);
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnFilters, setColumnFilters] = React.useState([]);
-  const [columnVisibility, setColumnVisibility] = React.useState({});
+  const [columnVisibility, setColumnVisibility] = React.useState({
+    rateCon: false, //hide this column by default
+  });
 
   const table = useReactTable({
     data,
@@ -165,7 +167,15 @@ export default function DataTable({ columns, data }) {
                     // </TableCell>
                     <TableCell key={cell.id} className="text-center">
                       {cell.getValue() === 'Booked' ? (
-                        <Badge className="dark:bg-cyan-500">Booked</Badge>
+                        <Badge className="dark:bg-green-500">Booked</Badge>
+                      ) : cell.getValue() === '@ P/U' ? (
+                        <Badge className="dark:bg-blue-500">@P/U</Badge>
+                      ) : cell.getValue() === 'In Transit' ? (
+                        <Badge className="dark:bg-purple-500">In Transit</Badge>
+                      ) : cell.getValue() === '@ Delivery' ? (
+                        <Badge className="dark:bg-yellow-500">@Delivery</Badge>
+                      ) : cell.getValue() === 'Invoiced' ? (
+                        <Badge className="dark:bg-orange-500">Invoiced</Badge>
                       ) : (
                         flexRender(
                           cell.column.columnDef.cell,

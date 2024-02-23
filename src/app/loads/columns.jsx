@@ -94,8 +94,9 @@ export const columns = [
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          className="p-2"
         >
-          Date Booked
+          Booked
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -109,8 +110,9 @@ export const columns = [
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          className="p-2"
         >
-          Delivery Date
+          Delivery
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -122,11 +124,11 @@ export const columns = [
   },
   {
     accessorKey: 'loadStatus',
-    header: 'Load Status',
+    header: 'Status',
   },
   {
     accessorKey: 'shippersReceivers',
-    header: 'Shippers/Receivers',
+    header: 'Shipper/Receiver',
   },
   {
     accessorKey: 'broker',
@@ -147,7 +149,7 @@ export const columns = [
   {
     accessorKey: 'loadRate',
     // header: 'Load Rate',
-    header: () => <div>Load Rate</div>,
+    header: () => <div>Rate</div>,
     cell: ({ row }) => {
       const loadRate = parseFloat(row.getValue('loadRate'));
       const formatted = new Intl.NumberFormat('en-US', {
@@ -160,18 +162,28 @@ export const columns = [
   },
   {
     accessorKey: 'addtlComp',
-    header: 'Addtl Comp',
-  },
-  {
-    accessorKey: 'totalDue',
-    // header: 'Total Due',
-    header: () => <div>Total Due</div>,
+    // header: 'Addtl Comp',
+    header: () => <div>Addtl Comp</div>,
     cell: ({ row }) => {
-      const totalDue = parseFloat(row.getValue('totalDue'));
+      const addtlComp = parseFloat(row.getValue('addtlComp'));
       const formatted = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
-      }).format(totalDue);
+      }).format(addtlComp);
+
+      return <div className="font-medium">{formatted}</div>;
+    },
+  },
+  {
+    accessorKey: 'totalComp',
+    // header: 'Total Due',
+    header: () => <div>Total Comp</div>,
+    cell: ({ row }) => {
+      const totalComp = parseFloat(row.getValue('totalComp'));
+      const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(totalComp);
 
       return <div className="font-medium">{formatted}</div>;
     },
@@ -182,11 +194,25 @@ export const columns = [
   },
   {
     accessorKey: 'loadedMi',
-    header: 'Loaded mi',
+    // header: 'Loaded mi',
+    header: () => <div>Loaded mi</div>,
+    cell: ({ row }) => {
+      const loadedMi = parseFloat(row.getValue('loadedMi'));
+      const formatted = new Intl.NumberFormat('en-US').format(loadedMi);
+
+      return <div className="font-medium">{formatted}</div>;
+    },
   },
   {
     accessorKey: 'totalMi',
-    header: 'Total mi',
+    // header: 'Total mi',
+    header: () => <div>Total mi</div>,
+    cell: ({ row }) => {
+      const totalMi = parseFloat(row.getValue('totalMi'));
+      const formatted = new Intl.NumberFormat('en-US').format(totalMi);
+
+      return <div className="font-medium">{formatted}</div>;
+    },
   },
   {
     accessorKey: 'rpmNoDh',

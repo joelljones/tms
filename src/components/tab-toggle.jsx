@@ -35,9 +35,11 @@ export default function TabsDemo() {
         <TabsContent value="loads">
           <DemoPage />
         </TabsContent>
-        <TabsContent value="drivers">drivers...</TabsContent>
-        <TabsContent value="shippers/receivers">...</TabsContent>
-        <TabsContent value="brokers">...</TabsContent>
+        <TabsContent value="drivers">drivers table coming soon...</TabsContent>
+        <TabsContent value="shippers/receivers">
+          shippers/receivers table coming soon...
+        </TabsContent>
+        <TabsContent value="brokers">brokers table coming soon...</TabsContent>
       </Tabs>
     </div>
   );
