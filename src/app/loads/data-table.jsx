@@ -36,6 +36,8 @@ import { Button } from '@/components/ui/button';
 
 import { Badge } from '@/components/ui/badge';
 
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+
 import { PlusSquare } from 'lucide-react';
 
 // interface DataTableProps<TData, TValue> {
@@ -134,7 +136,7 @@ export default function DataTable({ columns, data }) {
       </div>
 
       {/* TABLE */}
-      <div className="rounded-md border dark:bg-card">
+      <ScrollArea className="rounded-md border dark:bg-card">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -198,7 +200,8 @@ export default function DataTable({ columns, data }) {
             )}
           </TableBody>
         </Table>
-      </div>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
       <div className="flex-1 text-sm text-muted-foreground pt-4">
         {table.getFilteredSelectedRowModel().rows.length} of{' '}
         {table.getFilteredRowModel().rows.length} row(s) selected.
