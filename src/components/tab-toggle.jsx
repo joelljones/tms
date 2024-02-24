@@ -1,7 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import DemoPage from '../app/loads/page';
+import LoadsPage from '../app/loads/page';
 
-export default function TabsDemo() {
+export default function TabsToggle() {
   return (
     <div>
       <Tabs defaultValue="loads">
@@ -33,7 +33,7 @@ export default function TabsDemo() {
         </TabsList>
 
         <TabsContent value="loads">
-          <DemoPage />
+          <LoadsPage />
         </TabsContent>
         <TabsContent value="drivers">drivers table coming soon...</TabsContent>
         <TabsContent value="shippers/receivers">
