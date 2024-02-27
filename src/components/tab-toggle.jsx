@@ -5,7 +5,7 @@ export default function TabsToggle() {
   return (
     <div>
       <Tabs defaultValue="loads">
-        <TabsList className="dark:bg-card dark:text-muted-foreground">
+        <TabsList className="dark:bg-card dark:text-muted-foreground inline-block">
           <TabsTrigger
             value="loads"
             className="dark:data-[state=active]:bg-background"
