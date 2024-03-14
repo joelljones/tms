@@ -170,11 +170,11 @@ export default function DataTable({ columns, data }) {
                     <TableCell key={cell.id} className="text-center">
                       {cell.getValue() === 'Booked' ? (
                         <Badge className="dark:bg-green-500">Booked</Badge>
-                      ) : cell.getValue() === '@ P/U' ? (
+                      ) : cell.getValue() === '@P/U' ? (
                         <Badge className="dark:bg-blue-500">@P/U</Badge>
                       ) : cell.getValue() === 'In Transit' ? (
                         <Badge className="dark:bg-purple-500">In Transit</Badge>
-                      ) : cell.getValue() === '@ Delivery' ? (
+                      ) : cell.getValue() === '@Delivery' ? (
                         <Badge className="dark:bg-yellow-500">@Delivery</Badge>
                       ) : cell.getValue() === 'Invoiced' ? (
                         <Badge className="dark:bg-orange-500">Invoiced</Badge>
