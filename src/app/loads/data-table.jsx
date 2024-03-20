@@ -38,6 +38,15 @@ import { Badge } from '@/components/ui/badge';
 
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+
 import { PlusSquare } from 'lucide-react';
 
 // interface DataTableProps<TData, TValue> {
@@ -93,14 +102,25 @@ export default function DataTable({ columns, data }) {
           className="dark:border-background dark:ring-offset-background dark:placeholder:text-muted-foreground dark:focus-visible:ring-ring max-w-sm dark:bg-background dark:text-muted-foreground dark:data-[state=active]:bg-background"
         />
 
-        <div className="ml-auto flex">
-          {/* ADD ROW BTN */}
-          <Button
-            variant="ghost"
-            className="focus-visible:ring-0 focus-visible:ring-offset-0 p-2 mr-1"
-          >
-            <PlusSquare className="size-8 text-muted-foreground hover:text-foreground" />
-          </Button>
+        <div className="ml-auto flex items-center">
+          {/* ADD ROW BTN/DIALOG */}
+          <Dialog>
+            <DialogTrigger className="rounded-md hover:bg-accent hover:text-accent-foreground px-2 py-1 mr-1">
+              <PlusSquare className="size-8 text-muted-foreground hover:text-foreground" />
+            </DialogTrigger>
+            <DialogContent className="dark:border-background dark:bg-popover">
+              <DialogHeader>
+                {/* ADD ROW FORM */}
+                <DialogTitle className="dark:text-popover-foreground">
+                  Are you absolutely sure?
+                </DialogTitle>
+                <DialogDescription className="dark:text-popover-foreground">
+                  This action cannot be undone. This will permanently delete
+                  your account and remove your data from our servers.
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
 
           {/* COLUMN VISIBILITY TOGGLE */}
           <DropdownMenu>
