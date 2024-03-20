@@ -94,7 +94,7 @@ export const columns = [
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-          className="p-2"
+          className="p-2 dark:hover:bg-accent"
         >
           Booked
           <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -110,7 +110,7 @@ export const columns = [
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-          className="p-2"
+          className="p-2 dark:hover:bg-accent"
         >
           Delivery
           <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -152,12 +152,16 @@ export const columns = [
     header: () => <div>Rate</div>,
     cell: ({ row }) => {
       const loadRate = parseFloat(row.getValue('loadRate'));
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-      }).format(loadRate);
+      if (!isNaN(loadRate)) {
+        const formatted = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(loadRate);
 
-      return <div className="font-medium">{formatted}</div>;
+        return <div className="font-medium">{formatted}</div>;
+      } else {
+        return null; // Return null if loadRate is not present
+      }
     },
   },
   {
@@ -166,12 +170,16 @@ export const columns = [
     header: () => <div>Addtl Comp</div>,
     cell: ({ row }) => {
       const addtlComp = parseFloat(row.getValue('addtlComp'));
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-      }).format(addtlComp);
+      if (!isNaN(addtlComp)) {
+        const formatted = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(addtlComp);
 
-      return <div className="font-medium">{formatted}</div>;
+        return <div className="font-medium">{formatted}</div>;
+      } else {
+        return null; // Return null if addtlComp is not present
+      }
     },
   },
   {
@@ -180,12 +188,16 @@ export const columns = [
     header: () => <div>Total Comp</div>,
     cell: ({ row }) => {
       const totalComp = parseFloat(row.getValue('totalComp'));
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-      }).format(totalComp);
+      if (!isNaN(totalComp)) {
+        const formatted = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(totalComp);
 
-      return <div className="font-medium">{formatted}</div>;
+        return <div className="font-medium">{formatted}</div>;
+      } else {
+        return null; // Return null if totalComp is not present
+      }
     },
   },
   {
@@ -198,9 +210,16 @@ export const columns = [
     header: () => <div>Loaded mi</div>,
     cell: ({ row }) => {
       const loadedMi = parseFloat(row.getValue('loadedMi'));
-      const formatted = new Intl.NumberFormat('en-US').format(loadedMi);
+      if (!isNaN(loadedMi)) {
+        const formatted = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(loadedMi);
 
-      return <div className="font-medium">{formatted}</div>;
+        return <div className="font-medium">{formatted}</div>;
+      } else {
+        return null; // Return null if loadedMi is not present
+      }
     },
   },
   {
@@ -209,9 +228,16 @@ export const columns = [
     header: () => <div>Total mi</div>,
     cell: ({ row }) => {
       const totalMi = parseFloat(row.getValue('totalMi'));
-      const formatted = new Intl.NumberFormat('en-US').format(totalMi);
+      if (!isNaN(totalMi)) {
+        const formatted = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(totalMi);
 
-      return <div className="font-medium">{formatted}</div>;
+        return <div className="font-medium">{formatted}</div>;
+      } else {
+        return null; // Return null if totalMi is not present
+      }
     },
   },
   {
@@ -220,12 +246,16 @@ export const columns = [
     header: () => <div>RPM no DH</div>,
     cell: ({ row }) => {
       const rpmNoDh = parseFloat(row.getValue('rpmNoDh'));
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-      }).format(rpmNoDh);
+      if (!isNaN(rpmNoDh)) {
+        const formatted = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(rpmNoDh);
 
-      return <div className="font-medium">{formatted}</div>;
+        return <div className="font-medium">{formatted}</div>;
+      } else {
+        return null; // Return null if rpmNoDh is not present
+      }
     },
   },
   {
@@ -234,12 +264,16 @@ export const columns = [
     header: () => <div>Total RPM</div>,
     cell: ({ row }) => {
       const totalRpm = parseFloat(row.getValue('totalRpm'));
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-      }).format(totalRpm);
+      if (!isNaN(totalRpm)) {
+        const formatted = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(totalRpm);
 
-      return <div className="font-medium">{formatted}</div>;
+        return <div className="font-medium">{formatted}</div>;
+      } else {
+        return null; // Return null if totalRpm is not present
+      }
     },
   },
   {
@@ -252,7 +286,7 @@ export const columns = [
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
-              className="h-8 w-8 p-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+              className="h-8 w-8 p-0 focus-visible:ring-0 focus-visible:ring-offset-0 dark:hover:bg-accent"
             >
               <span className="sr-only">Open menu</span>
               <MoreHorizontal className="h-4 w-4" />
