@@ -2,8 +2,18 @@
 'use client';
 
 // import { ColumnDef } from "@tanstack/react-table"
+
 import { Button } from '@/components/ui/button';
+
 import { Checkbox } from '@/components/ui/checkbox';
+
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +21,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+
 import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
 
 // This type is used to define the shape of our data.
@@ -21,44 +32,6 @@ import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
 //   status: "pending" | "processing" | "success" | "failed"
 //   email: string
 // }
-
-// HANDLE EDIT
-// const handleEditSubmit = async (e) => {
-//   e.preventDefault();
-
-//   const updatedText = text;
-
-//   const res = await fetch(process.env.DB_URL + load._id, {
-//     method: 'PATCH',
-//     body: JSON.stringify({ text: updatedText }),
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   });
-//   const json = await res.json();
-
-//   if (!res.ok) {
-//     setError(json.error);
-//   }
-//   if (res.ok) {
-//     setText('');
-//     setError(null);
-//     console.log('Comment edited:', json);
-//     closeModal(); // close modal here to prevent close on submit when error is present
-//   }
-// };
-
-// HANDLE DELETE
-// const handleDeleteClick = async () => {
-//   const res = await fetch(process.env.DB_URL + load._id, {
-//     method: 'DELETE',
-//   });
-//   const json = await res.json();
-
-//   if (res.ok) {
-//     console.log('Load deleted:', json);
-//   }
-// };
 
 // export const columns: ColumnDef<Payment>[] = [
 export const columns = [
@@ -276,39 +249,41 @@ export const columns = [
       }
     },
   },
+  // EDIT ROW & DELETE ROW
   {
     id: 'actions',
     cell: ({ row }) => {
       const load = row.original;
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              className="h-8 w-8 p-0 focus-visible:ring-0 focus-visible:ring-offset-0 dark:hover:bg-accent"
-            >
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            {/* EDIT ROW */}
-            <DropdownMenuItem
-            // onClick={openModal}
-            >
-              Edit load
-            </DropdownMenuItem>
-
-            {/* DELETE ROW */}
-            <DropdownMenuItem
-            // onClick={handleDeleteClick}
-            >
-              Delete load
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        // To activate the Dialog component from within a Dropdown Menu, you must encase the Dropdown Menu component in the Dialog component
+        <Dialog>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                className="h-8 w-8 p-0 focus-visible:ring-0 focus-visible:ring-offset-0 dark:hover:bg-accent"
+              >
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              {/* EDIT ROW */}
+              <DialogTrigger asChild>
+                <DropdownMenuItem>Edit load</DropdownMenuItem>
+              </DialogTrigger>
+              {/* DELETE ROW */}
+              <DropdownMenuItem>Delete load</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <DialogContent className="dark:border-background dark:bg-popover max-h-screen">
+            <DialogHeader className="max-h-screen">
+              {/* EDIT ROW FORM */}
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       );
     },
   },

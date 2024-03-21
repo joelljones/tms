@@ -1,5 +1,13 @@
 import { useForm } from 'react-hook-form';
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+
 import { Button } from '@/components/ui/button';
 
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
@@ -99,7 +107,7 @@ export default function AddRowForm() {
           >
             Driver
           </label>
-          <select
+          {/* <select
             className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
             {...register('driver')}
           >
@@ -108,7 +116,18 @@ export default function AddRowForm() {
             <option value=" Jane Doe"> Jane Doe</option>
             <option value=" John Smith"> John Smith</option>
             <option value=" Jane Smith"> Jane Smith</option>
-          </select>
+          </select> */}
+          <Select className="" {...register('driver')}>
+            <SelectTrigger className="dark:border-input dark:bg-transparent">
+              <SelectValue placeholder="" />
+            </SelectTrigger>
+            <SelectContent className="dark:border-input dark:bg-popover">
+              <SelectItem value="John Doe">John Doe</SelectItem>
+              <SelectItem value="Jane Doe"> Jane Doe</SelectItem>
+              <SelectItem value="John Smith"> John Smith</SelectItem>
+              <SelectItem value="Jane Smith"> Jane Smith</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="space-y-2">
@@ -118,7 +137,7 @@ export default function AddRowForm() {
           >
             Status
           </label>
-          <select
+          {/* <select
             className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
             {...register('loadStatus')}
           >
@@ -128,7 +147,19 @@ export default function AddRowForm() {
             <option value=" In Transit"> In Transit</option>
             <option value=" @Delivery"> @Delivery</option>
             <option value=" Invoiced"> Invoiced</option>
-          </select>
+          </select> */}
+          <Select className="" {...register('loadStatus')}>
+            <SelectTrigger className="dark:border-input dark:bg-transparent">
+              <SelectValue placeholder="" />
+            </SelectTrigger>
+            <SelectContent className="dark:border-input dark:bg-popover">
+              <SelectItem value="Booked">Booked</SelectItem>
+              <SelectItem value=" @P/U"> @P/U</SelectItem>
+              <SelectItem value=" In Transit"> In Transit</SelectItem>
+              <SelectItem value=" @Delivery"> @Delivery</SelectItem>
+              <SelectItem value=" Invoiced"> Invoiced</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="space-y-2">
