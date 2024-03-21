@@ -24,6 +24,8 @@ import {
 
 import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
 
+import EditRowForm from '@/components/edit-row-form';
+
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 // export type Payment = {
@@ -281,6 +283,7 @@ export const columns = [
           <DialogContent className="dark:border-background dark:bg-popover max-h-screen">
             <DialogHeader className="max-h-screen">
               {/* EDIT ROW FORM */}
+              <EditRowForm rowData={load} />
             </DialogHeader>
           </DialogContent>
         </Dialog>
