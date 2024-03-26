@@ -26,6 +26,13 @@ import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
 
 import EditRowForm from '@/components/edit-row-form';
 
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 // export type Payment = {
@@ -257,6 +264,29 @@ export const columns = [
     cell: ({ row }) => {
       const load = row.original;
 
+      const onDeleteClick = async () => {
+        const { id } = row.original;
+
+        try {
+          const { data, error } = await supabase
+            .from('loads')
+            .delete()
+            .eq('id', id);
+
+          if (error) {
+            throw error;
+          }
+
+          console.log('Data deleted successfully:', row.original);
+          // Reload the page after a short delay
+          // setTimeout(() => {
+          window.location.reload();
+          // }, 1000); // Reload after 1 second (1000 milliseconds)
+        } catch (error) {
+          console.error('Error deleting row:', error.message);
+        }
+      };
+
       return (
         // To activate the Dialog component from within a Dropdown Menu, you must encase the Dropdown Menu component in the Dialog component
         <Dialog>
@@ -277,7 +307,9 @@ export const columns = [
                 <DropdownMenuItem>Edit load</DropdownMenuItem>
               </DialogTrigger>
               {/* DELETE ROW */}
-              <DropdownMenuItem>Delete load</DropdownMenuItem>
+              <DropdownMenuItem onClick={onDeleteClick}>
+                Delete load
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <DialogContent className="dark:border-background dark:bg-popover max-h-screen">
