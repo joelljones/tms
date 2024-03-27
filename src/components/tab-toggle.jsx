@@ -12,7 +12,7 @@ export default function TabsToggle() {
           >
             Loads
           </TabsTrigger>
-          <TabsTrigger
+          {/* <TabsTrigger
             value="drivers"
             className="dark:data-[state=active]:bg-background"
           >
@@ -29,17 +29,17 @@ export default function TabsToggle() {
             className="dark:data-[state=active]:bg-background"
           >
             Brokers
-          </TabsTrigger>
+          </TabsTrigger> */}
         </TabsList>
 
         <TabsContent value="loads">
           <LoadsPage />
         </TabsContent>
-        <TabsContent value="drivers">drivers table coming soon...</TabsContent>
+        {/* <TabsContent value="drivers">drivers table coming soon...</TabsContent>
         <TabsContent value="shippers/receivers">
           shippers/receivers table coming soon...
         </TabsContent>
-        <TabsContent value="brokers">brokers table coming soon...</TabsContent>
+        <TabsContent value="brokers">brokers table coming soon...</TabsContent> */}
       </Tabs>
     </div>
   );
