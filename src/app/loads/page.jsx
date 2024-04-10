@@ -169,6 +169,8 @@ async function getData() {
   // ];
 }
 
+export const revalidate = 0;
+
 export default async function LoadsPage() {
   const data = await getData();
 
