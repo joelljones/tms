@@ -5,7 +5,7 @@ export const revalidate = 0;
 
 export default function Home() {
   return (
-    <main className="flex h-screen w-screen flex-col items-center justify-between py-20 px-8">
+    <main className="flex h-screen w-screen flex-col items-center justify-center py-20 px-8">
       {/* <ModeToggle /> */}
       <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-6 w-full">
         <TabsToggle />
