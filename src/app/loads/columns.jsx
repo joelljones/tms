@@ -193,11 +193,7 @@ export const columns = [
     cell: ({ row }) => {
       const loadedMi = parseFloat(row.getValue("loadedMi"));
       if (!isNaN(loadedMi)) {
-        const formatted = new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-        }).format(loadedMi);
-
+        const formatted = new Intl.NumberFormat("en-US", {}).format(loadedMi);
         return <div className="font-medium">{formatted}</div>;
       } else {
         return null; // Return null if loadedMi is not present
@@ -211,11 +207,7 @@ export const columns = [
     cell: ({ row }) => {
       const totalMi = parseFloat(row.getValue("totalMi"));
       if (!isNaN(totalMi)) {
-        const formatted = new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-        }).format(totalMi);
-
+        const formatted = new Intl.NumberFormat("en-US", {}).format(totalMi);
         return <div className="font-medium">{formatted}</div>;
       } else {
         return null; // Return null if totalMi is not present
