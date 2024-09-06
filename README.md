@@ -1,5 +1,7 @@
 # TMS
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b47aea2a-dccc-407f-acfa-7f3d77e1120f/deploy-status)](https://app.netlify.com/sites/tms-table/deploys)
+
 A transportation management system (TMS) - users can log in to view, create, update, & delete freight delivery loads
 
 ![screenshot](screenshot.png)
